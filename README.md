@@ -116,7 +116,7 @@ Now hit _Generate_. When generation is finished we are done with CMake.
 
 Open the `OpenCV.sln` just created in the build folder.
 
-Go in Tools>Options... in "Projects and Solutions > Web Projects" uncheck the last parameter. Continue if it was already unchecked, otherwise close Visual Studio and reopen `OpenCV.sln`.
+Go in "Tools>Options...", then in "Projects and Solutions > Web Projects" uncheck the last parameter. Continue if it was already unchecked, otherwise close Visual Studio and reopen `OpenCV.sln`.
 
 ![devenv_TVsR0HP4yc](https://user-images.githubusercontent.com/28230243/166442847-060bb8cc-2333-4fc9-8f73-24749f233e60.png)
 
@@ -171,7 +171,13 @@ This import should be done by default in the `config.py` file in the `cv2` folde
 
 The problem is most likely linked to other libraries not loaded by Python _even if they are in your PATH environment variables_. You can troubleshoot this by adding all the PATH variables to the script with `os.add_dll_directory()` until it works or use the [Dependency walker](https://www.dependencywalker.com/) to find which DLLs you are missing.
 
-A solution highlighted in the [github issue](https://github.com/opencv/opencv/issues/19972) mentioned in the intro of this README was that using an Anaconda Python install made it work, so having a Python 3.8 Anaconda install I added the `C:/Users/username/Anaconda3/Library/bin` path to my script and voilà, it works! (for me at least)
+##### Using the Dependency walker
+
+Opening the `cv2.cp38-win_amd64.pyd` with the dependency walker can get you a list of DLLs it is missing. However it will also list a ton of Microsoft DLLs (starting with API-MS-... or EXT-MS-...) that actually do not impact the import error. Then you can try to add manually the missing libraries and see if it solves the issue.
+
+##### Using Anaconda binaries
+
+A solution highlighted in the [github issue](https://github.com/opencv/opencv/issues/19972) mentioned in the intro of this README was that using an Anaconda Python install made it work, so having a Python 3.8 Anaconda install I added the `C:/Users/username/Anaconda3/Library/bin` path to my script and voilà, it worked.
 
 It turns out the only missing libraries were `hdf5.dll` and `zlib.dll` out of the >200 DLL files located there. So they are here in this repository if you do not want to install Anaconda to not use it.
 
