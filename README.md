@@ -9,7 +9,7 @@ The process is based on [this tutorial by Anindya](https://thinkinfi.com/install
 
 Both of these tutorials should be enough for most people. **But** in some cases, even if the module was successfully installed in your Python installation, you may end up with this `ImportError: DLL load failed while importing cv2: The specified module could not be found.` message when importing OpenCV with `import cv2`.
 
-This case is detailed [at the end](README.md/#Check-install-and-troubleshooting) and is almost entirely based on [this quite extensive github issue](https://github.com/opencv/opencv/issues/19972). Basically your whole installation may be completely successful, it may just be Python failing to read your environment variables.
+This case is detailed [at the end](README.md#Check-install-and-troubleshooting) and is almost entirely based on [this quite extensive github issue](https://github.com/opencv/opencv/issues/19972). Basically your whole installation may be completely successful, it may just be Python failing to read your environment variables.
 
 #### Hardware and software configuration used
 
