@@ -42,10 +42,48 @@ Download Visual Studio ([2019 version here](https://visualstudio.microsoft.com/f
 
 ### CUDA and cuDNN
 
+Download and install the latest [CUDA toolkit](https://developer.nvidia.com/cuda-downloads) compatible with your GPU ([see here](https://en.wikipedia.org/wiki/CUDA#GPUs_supported) for compatibility as well) or check you already have it installed in `C:\Program Files\NVIDIA GPU Computing Toolkit`.
+
+Idem for cuDNN with an intermediary step to create a NVIDIA developer account, fill up their survey etc.
+
+Check in your environment variables that `CUDA_PATH` and `CUDA_PATH_Vxx_x` are here and pointing to your install path.
+
+Copy the files in the cuDNN folders (under `C:\Program Files\NVIDIA\CUDNN\vX.X`) **bin**, **include** and **lib/x64** to the corresponding folders in your CUDA folder.
 
 ### OpenCV
 
+Download and extract matching versions of OpenCV and OpenCV-contrib from the [links above](README.md#prerequisites).
+
 ### CMake configuration
+
+#### Preparation
+
+Prepare a **"build"** folder with your OpenCV extracted folders.
+
+![explorer_bSMon2LQY0](https://user-images.githubusercontent.com/28230243/166434918-458aa3ae-8696-4cee-bb8e-5d9713401147.png)
+
+Edit the end of the _OpenCVDetectPython.cmake_ file in _opencv-x.x.x/cmake_. Move the second _elseif_ above the first to get this:
+
+![notepad++_Zwz4Lsl2kZ](https://user-images.githubusercontent.com/28230243/166435763-da8d2429-ba15-45ab-aede-ec61a6715cbc.png)
+
+This will prioritize the use of your Python 3 installation for the build.
+
+#### CMake GUI build configuration
+
+Provide the paths to the OpenCV and target build folders:
+
+![cmake-gui_IBQybmF6kh](https://user-images.githubusercontent.com/28230243/166436165-126efd0b-43e5-4d1a-9e8a-1d46dbec7f35.png)
+
+Hit _Configure_ and select _x64_ as the _Optional platform for generator_, then hit finish to start the first round of configuration.
+
+Once this is done edit the following parameters:
+| Name | Value |
+|-|-|
+| WITH_CUDA | ✅ |
+| OPENCV_DNN_CUDA | ✅ |
+| ENABLE_FAST_MATH | ✅ |
+| OPENCV_EXTRA_MODULES_PATH | path of **modules** directory in extracted opencv_contrib-x.x.x |
+
 
 ### Build the project with Visual Studio
 
