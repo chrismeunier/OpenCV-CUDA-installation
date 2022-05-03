@@ -78,14 +78,51 @@ Hit _Configure_ and select _x64_ as the _Optional platform for generator_, then 
 
 Once this is done edit the following parameters:
 | Name | Value |
-|-|-|
-| WITH_CUDA | ✅ |
-| OPENCV_DNN_CUDA | ✅ |
+|---|:---:|
 | ENABLE_FAST_MATH | ✅ |
+| OPENCV_DNN_CUDA | ✅ |
 | OPENCV_EXTRA_MODULES_PATH | path of **modules** directory in extracted opencv_contrib-x.x.x |
+| OPENCV_PYTHON3_VERSION | ✅ |
+| WITH_CUDA | ✅ |
+<!--| BUILD_SHARED_LIBS | 🔳 |-->
 
+Check the PYTHON3_... parameters so that the paths correspond to what you expect.
+Note that the path separator in OPENCV_EXTRA_MODULES_PATH (or any other parameter value) has to be "/" and _not "\\"_.
+
+Hit _Configure_ again.
+
+Edit two more parameters:
+| Name | Value |
+|---|:---:|
+| CUDA_FAST_MATH | ✅ |
+| CUDA_ARCH_BIN | x.x |
+
+The CUDA_ARCH_BIN corresponding to your GPU is the value found in the left column of the [GPU support table](https://en.wikipedia.org/wiki/CUDA#GPUs_supported). For instance "7.5" for the RTX 2080 Ti.
+
+![firefox_pEBLFW3y2g](https://user-images.githubusercontent.com/28230243/166440728-1e63a0ed-6340-4b85-b350-448274c3d077.png)
+
+Hit _Configure_ for the final configuration round.
+Once the configuration is done you should not have any parameter left in red.
+Now hit _Generate_. When generation is finished we are done with CMake.
 
 ### Build the project with Visual Studio
+
+Open the `OpenCV.sln` just created in the build folder.
+
+Go in Tools>Options... in "Projects and Solutions > Web Projects" uncheck the last parameter. Continue if it was already unchecked, otherwise close Visual Studio and reopen `OpenCV.sln`.
+
+![devenv_TVsR0HP4yc](https://user-images.githubusercontent.com/28230243/166442847-060bb8cc-2333-4fc9-8f73-24749f233e60.png)
+
+Change the "Debug" mode to "Release".
+
+![debug2release](https://user-images.githubusercontent.com/28230243/166443402-9e1cdd4b-245e-4d0e-a202-6e1b3b9edac1.png)
+
+In the solution explorer expand **CMakeTargets**, right-click **ALL_BUILD** and select **Build**. This will take about half an hour.
+
+![devenv_vwYMW4osmJ](https://user-images.githubusercontent.com/28230243/166444051-d75deecb-eb99-42ff-a184-b2709e285f7b.png)
+
+Then repeat the step for **INSTALL** (right below **ALL_BUILD**).
+Check for errors in the two building steps, if everything is fine you are done.
 
 ### Check install and troubleshooting
 
