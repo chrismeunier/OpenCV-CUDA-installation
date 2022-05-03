@@ -7,9 +7,12 @@ The process is based on [this tutorial by Anindya](https://thinkinfi.com/install
 
 #### ImportError: DLL load failed while importing cv2: The specified module could not be found.
 
-Both of these tutorials should be enough for most people. **But** in some cases, even if the module was successfully installed in your Python installation, you may end up with this `ImportError: DLL load failed while importing cv2: The specified module could not be found.` message when importing OpenCV with `import cv2`.
+Both of these tutorials should be enough for most people. **But** in some cases, even if the module was successfully installed in your Python installation, you may end up with this message when importing OpenCV with `import cv2`:
+```
+ImportError: DLL load failed while importing cv2: The specified module could not be found.
+```
 
-This case is detailed [at the end](README.md#Check-install-and-troubleshooting) and is almost entirely based on [this quite extensive github issue](https://github.com/opencv/opencv/issues/19972). Basically your whole installation may be completely successful, it may just be Python failing to read your environment variables.
+This case is detailed in the [troubleshooting section](README.md#Check-install-and-troubleshooting) and is almost entirely based on [this quite extensive github issue](https://github.com/opencv/opencv/issues/19972). Basically your whole installation is likely completely successful, it may just be Python failing to read your environment variables.
 
 #### Hardware and software configuration used
 
@@ -32,8 +35,6 @@ Python 3.8.10, OpenCV 4.5.5, NumPy 1.21.6, CUDA toolkit v11.6, cuDNN v8.3.3, Vis
 Check that your GPU is compatible with CUDA: [wikipedia.org/wiki/CUDA](https://en.wikipedia.org/wiki/CUDA#GPUs_supported).
 
 ### Python, NumPy and pip
-
-#### Python install
 
 Install a recent Python 3.x however you prefer (Python website, Anaconda, Windows store, create a virtual env...), but if you are here that's probably already done. This "tutorial" is done with a standard Python install, from the Python website with no virtual environment. For the particularities of an Anaconda installation look at [James Bowley's tutorial](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/).
 
@@ -141,7 +142,9 @@ print(cv2.cuda.getCudaEnabledDeviceCount())
 
 If it works, congratulations you are good to go!
 
-If not let's tackle the problem. The _problem_ being `ImportError: DLL load failed while importing cv2: The specified module could not be found.`. For other bugs and problems I refer you to the [troubleshooting section of James Bowley's tutorial](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/#troubleshooting).
+If not let's tackle _the_ problem. The problem being `ImportError: DLL load failed while importing cv2: The specified module could not be found.`.
+
+**For other bugs and problems I refer you to the** [**troubleshooting section of James Bowley's tutorial**](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/#troubleshooting).
 
 #### Is everything in place ?
 
