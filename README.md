@@ -149,7 +149,7 @@ If not let's tackle _the_ problem. The problem being `ImportError: DLL load fail
 #### Is everything in place ?
 
 You should have a "cv2" folder in your python installation (under `your_python_path/Lib/site-packages`). If not check if you have a "binding" folder in the Visual Studio solution.
-Otherwise I suggest trying to change two parameters in the CMake configuration: BUILD_SHARED_LIBS 🔳 and OPENCV_FORCE_PYTHON_LIBS ✅. Then re-generate and re-build everything.
+Otherwise I suggest trying to change two parameters in the CMake configuration: `BUILD_SHARED_LIBS 🔳` and `OPENCV_FORCE_PYTHON_LIBS ✅`. Then re-generate and re-build everything.
 
 #### Is CV2 detected ?
 
