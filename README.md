@@ -3,7 +3,7 @@ A save of the process needed to build manually OpenCV for Python 3 with CUDA bin
 
 ## Sources and troubleshooting references
 
-The process is based on [this tutorial by Anindya](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the step-by-step process with CMake GUI and [this tutorial by James Bowley](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the process with command line CMake and some troubleshooting.
+The process is based on [this tutorial by Anindya](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the step-by-step process with CMake GUI and [this tutorial by James Bowley](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/) for the process with command line CMake and some troubleshooting.
 
 #### ImportError: DLL load failed while importing cv2: The specified module could not be found.
 
@@ -36,7 +36,7 @@ Check that your GPU is compatible with CUDA: [wikipedia.org/wiki/CUDA](https://e
 
 ### Python, NumPy and pip
 
-Install a recent Python 3.x however you prefer (Python website, Anaconda, Windows store, create a virtual env...), but if you are here that's probably already done. This "tutorial" is done with a standard Python install, from the Python website with no virtual environment. For the particularities of an Anaconda installation look at [James Bowley's tutorial](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/).
+Install a recent Python 3.x however you prefer (Python website, Anaconda, Windows store, create a virtual env...), but if you are here that's probably already done. This "tutorial" is done with a standard Python install, from the Python website with no virtual environment. For the particularities of an Anaconda installation look at [James Bowley's tutorial](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/).
 
 Make sure you have NumPy installed or install it with `pip install numpy`. Uninstall any OpenCV python module `pip uninstall opencv-python` or `pip uninstall opencv-contrib-python`. Delete the `YOUR_PYTHON_PATH/Lib/site-packages/cv2` folder for cleaning purposes.
 
@@ -117,6 +117,8 @@ Now hit _Generate_. When generation is finished we are done with CMake.
 Open the `OpenCV.sln` just created in the build folder.
 
 Go in "Tools>Options...", then in "Projects and Solutions > Web Projects" uncheck the last parameter. Continue if it was already unchecked, otherwise close Visual Studio and reopen `OpenCV.sln`.
+
+_N.B. If you are not using Visual Studio in english, this setting may be elsewhere or (from personal experience) somehow simply unfindable. If this is the case **change the language to english**. While I have no precise idea of why this setting is needed, [it actually has an impact](https://github.com/opencv/opencv/issues/19972#issuecomment-1119781901)._
 
 ![devenv_TVsR0HP4yc](https://user-images.githubusercontent.com/28230243/166442847-060bb8cc-2333-4fc9-8f73-24749f233e60.png)
 
