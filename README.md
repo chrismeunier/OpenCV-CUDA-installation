@@ -1,9 +1,9 @@
 # OpenCV CUDA installation
-A save of the process needed to build manually OpenCV for Python 3 with CUDA bindings on Windows 10.
+A save of the process needed to build manually OpenCV for Python 3 with CUDA bindings on Windows 10 and 11.
 
 ## Sources and troubleshooting references
 
-The process is based on [this tutorial by Anindya](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the step-by-step process with CMake GUI and [this tutorial by James Bowley](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/) for the process with command line CMake and some troubleshooting.
+The process is based on [this tutorial by Anindya](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the step-by-step process with CMake GUI and [this tutorial by James Bowley](https://www.jamesbowley.co.uk/qmd/opencv_cuda_python_windows.html) for the process with command line CMake and some troubleshooting.
 
 #### ImportError: DLL load failed while importing cv2: The specified module could not be found.
 
@@ -20,6 +20,8 @@ Tested on a Windows 10 20H2 machine with i7-10700 CPU @ 2.90GHz and GeForce RTX 
 
 Python 3.8.10, OpenCV 4.5.5, NumPy 1.21.6, CUDA toolkit v11.6, cuDNN v8.3.3, Visual Studio Community 2019 v16.11.13, CMake 3.19.1, all of this in April 2022.
 
+Repeated in September 2022 with no problems on the same machine updated to Windows 11 and on another i5 laptop with an older Quadro GPU. I will not need to repeat an installation for the foreseeable future, if something goes wrong please do keep me posted!
+
 ## Step-by-step installation process
 
 ### Prerequisites
@@ -29,14 +31,14 @@ Python 3.8.10, OpenCV 4.5.5, NumPy 1.21.6, CUDA toolkit v11.6, cuDNN v8.3.3, Vis
 - [cuDNN](https://developer.nvidia.com/rdp/cudnn-archive) corresponding to CUDA (free account creation needed to download)
 - Python 3 install
 - NumPy
-- OpenCV [from source](https://github.com/opencv/opencv/releases) and OpenCV [contrib modules from source](https://github.com/opencv/opencv_contrib/tags)
+- OpenCV [from source](https://github.com/opencv/opencv/releases) and the matching version of OpenCV [contrib modules from source](https://github.com/opencv/opencv_contrib/tags)
 - [CMake](https://cmake.org/download/)
 
 Check that your GPU is compatible with CUDA: [wikipedia.org/wiki/CUDA](https://en.wikipedia.org/wiki/CUDA#GPUs_supported).
 
 ### Python, NumPy and pip
 
-Install a recent Python 3.x however you prefer (Python website, Anaconda, Windows store, create a virtual env...), but if you are here that's probably already done. This "tutorial" is done with a standard Python install, from the Python website with no virtual environment. For the particularities of an Anaconda installation look at [James Bowley's tutorial](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/).
+Install a recent Python 3.x however you prefer (Python website, Anaconda, Windows store, create a virtual env...), but if you are here that's probably already done. This "tutorial" is done with a standard Python install, from the Python website with no virtual environment. For the particularities of an Anaconda installation look at [James Bowley's tutorial](https://www.jamesbowley.co.uk/qmd/opencv_cuda_python_windows.html).
 
 Make sure you have NumPy installed or install it with `pip install numpy`. Uninstall any OpenCV python module `pip uninstall opencv-python` or `pip uninstall opencv-contrib-python`. Delete the `YOUR_PYTHON_PATH/Lib/site-packages/cv2` folder for cleaning purposes.
 
