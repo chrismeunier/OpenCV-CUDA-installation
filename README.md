@@ -1,6 +1,8 @@
 # OpenCV CUDA installation
 A save of the process needed to build manually OpenCV for Python 3 with CUDA bindings on Windows 10 and 11.
 
+Alternatively this is also a guide for building a standard OpenCV module for Python 3 if you omit all the CUDA related paragraphs.
+
 ## Sources and troubleshooting references
 
 The process is based on [this tutorial by Anindya](https://thinkinfi.com/install-opencv-gpu-with-cuda-for-windows-10/) for the step-by-step process with CMake GUI and [this tutorial by James Bowley](https://www.jamesbowley.co.uk/qmd/opencv_cuda_python_windows.html) for the process with command line CMake and some troubleshooting.
@@ -20,7 +22,9 @@ Tested on a Windows 10 20H2 machine with i7-10700 CPU @ 2.90GHz and GeForce RTX 
 
 Python 3.8.10, OpenCV 4.5.5, NumPy 1.21.6, CUDA toolkit v11.6, cuDNN v8.3.3, Visual Studio Community 2019 v16.11.13, CMake 3.19.1, all of this in April 2022.
 
-Repeated in September 2022 with no problems on the same machine updated to Windows 11 and on another i5 laptop with an older Quadro GPU. I will not need to repeat an installation for the foreseeable future, if something goes wrong please do keep me posted!
+Repeated in September 2022 with no problems on the same machine updated to Windows 11 and on another i5 laptop with an older Quadro GPU. I will not need to repeat an installation (with CUDA) for the foreseeable future, if something goes wrong please do keep me posted!
+
+Repeated in late 2023 without problems (without CUDA) on a Windows 11 laptop (i7-8th gen, Intel UHD Graphics 620) with Python 3.10, OpenCV 4.9.
 
 ## Step-by-step installation process
 
@@ -128,7 +132,7 @@ Change the "Debug" mode to "Release".
 
 ![debug2release](https://user-images.githubusercontent.com/28230243/166443402-9e1cdd4b-245e-4d0e-a202-6e1b3b9edac1.png)
 
-In the solution explorer expand **CMakeTargets**, right-click **ALL_BUILD** and select **Build**. This will take about half an hour.
+In the solution explorer expand **CMakeTargets**, right-click **ALL_BUILD** and select **Build**. This should take about half an hour.
 
 ![devenv_vwYMW4osmJ](https://user-images.githubusercontent.com/28230243/166444051-d75deecb-eb99-42ff-a184-b2709e285f7b.png)
 
@@ -148,7 +152,7 @@ If it works, congratulations you are good to go!
 
 If not let's tackle _the_ problem. The problem being `ImportError: DLL load failed while importing cv2: The specified module could not be found.`.
 
-**For other bugs and problems I refer you to the** [**troubleshooting section of James Bowley's tutorial**](https://jamesbowley.co.uk/accelerate-opencv-4-4-0-build-with-cuda-and-python-bindings/#troubleshooting).
+**For other bugs and problems I refer you to the** [**troubleshooting section of James Bowley's tutorial**](https://www.jamesbowley.co.uk/qmd/opencv_cuda_python_windows.html#troubleshooting-python-bindings-installation-issues).
 
 #### Is everything in place ?
 
@@ -183,7 +187,7 @@ Opening the `cv2.cp38-win_amd64.pyd` with the dependency walker can get you a li
 
 A solution highlighted in the [github issue](https://github.com/opencv/opencv/issues/19972) mentioned in the intro of this README was that using an Anaconda Python install made it work, so having a Python 3.8 Anaconda install I added the `C:/Users/username/Anaconda3/Library/bin` path to my script and voilà, it worked.
 
-It turns out the only missing libraries were `hdf5.dll` and `zlib.dll` out of the >200 DLL files located there. So they are here in this repository if you do not want to install Anaconda to not use it.
+It turns out my only missing libraries were `hdf5.dll` and `zlib.dll` out of the >200 DLL files located there. So they are here in this repository if you do not want to needlessly install Anaconda.
 
 Once you have located the folders containing your missing DLLs you have a few options to permanently solve the import error:
 
